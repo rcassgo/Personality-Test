@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -8,7 +8,8 @@ const ResultPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const totalScore = state?.totalScore || 0;
-  const userAnswers = state?.userAnswers || [];
+  // useMemo로 userAnswers 고정
+  const userAnswers = useMemo(() => state?.userAnswers || [], [state?.userAnswers]);
 
   // 결과 저장 함수 (의존성 배열에 totalScore, userAnswers 추가)
   useEffect(() => {
@@ -24,7 +25,7 @@ const ResultPage = () => {
       }
     };
     saveResult();
-  }, [totalScore, userAnswers]); // ← 의존성 배열에 추가
+  }, [totalScore, userAnswers]);
 
   const getResult = () => {
     if (totalScore >= 80) return { 
@@ -34,7 +35,7 @@ const ResultPage = () => {
     };
     if (totalScore >= 60) return { 
       type: '어울림', 
-      desc: '이 유형은 당신200에게 잘 맞습니다.',
+      desc: '이 유형은 당신에게 잘 맞습니다.',
       detail: '주변과의 관계에서 균형을 잘 맞추며, 충분히 소통하고 협력할 수 있습니다. 새로운 변화에도 적당히 적응할 수 있습니다.'
     };
     if (totalScore >= 40) return { 
@@ -59,7 +60,6 @@ const ResultPage = () => {
   return (
     <div className="result-container">
       <h1>당신의 테스트 결과</h1>
-      
       <div className="result-card">
         <div className="result-type">{result.type}</div>
         <div className="score-display">
@@ -72,7 +72,6 @@ const ResultPage = () => {
           <p>{result.detail}</p>
         </div>
       </div>
-
       <button 
         className="retry-btn"
         onClick={() => navigate('/')}
