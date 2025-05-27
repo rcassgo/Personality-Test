@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import questionsData from '../data/questions.js';
+import {questionsData} from '../data/questions.js';
 
 const ResultPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const userAnswers = state?.userAnswers || [];
 
-  // 카테고리별 점수 계산
+
   const categoryScores = {
     "지역사회": 0,
     "공공기관": 0,
@@ -15,7 +15,7 @@ const ResultPage = () => {
     "재활병원": 0
   };
 
-  // 각 카테고리별로 질문 5개씩이므로, 인덱스를 잘 맞춰야 함
+
   questionsData.forEach((group, groupIndex) => {
     for (let qIndex = 0; qIndex < group.questions.length; qIndex++) {
       const answer = userAnswers[groupIndex * 5 + qIndex];
@@ -25,7 +25,7 @@ const ResultPage = () => {
     }
   });
 
-  // 가장 높은 점수의 카테고리 찾기
+
   let maxScore = -1;
   let resultCategory = "";
   for (const [category, score] of Object.entries(categoryScores)) {

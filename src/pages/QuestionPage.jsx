@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import questionsData from '../data/questions.js';
+import {questionsData} from '../data/questions.js';
 import { options } from '../data/questions.js';
 
 const QuestionPage = () => {
@@ -9,7 +9,7 @@ const QuestionPage = () => {
   const [userAnswers, setUserAnswers] = useState(Array(20).fill(null));
   const navigate = useNavigate();
 
-  // 모든 질문을 1차원 배열로 펼치기
+
   const allQuestions = questionsData.flatMap(group =>
     group.questions.map(q => ({ text: q, category: group.category }))
   );

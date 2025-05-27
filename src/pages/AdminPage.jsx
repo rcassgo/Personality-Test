@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
-import "../styles/AdminPage.css"; // 스타일 파일 import
+import "../styles/AdminPage.css";
 
 const AdminPage = () => {
   const [results, setResults] = useState([]);
@@ -18,12 +18,12 @@ const AdminPage = () => {
     fetchResults();
   }, []);
 
-  // 평균 점수 계산
+
   const avgScore = results.length > 0
     ? (results.reduce((sum, result) => sum + result.totalScore, 0) / results.length).toFixed(1)
     : "데이터 없음";
 
-  // 날짜 포맷 함수
+
   const formatDate = (timestamp) => {
     if (!timestamp?.toDate) return "날짜 없음";
     return timestamp.toDate().toLocaleString();
