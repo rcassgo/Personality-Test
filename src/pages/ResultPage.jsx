@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../firebase'
 import '../styles/ResultPage.css';
 
 const ResultPage = () => {
