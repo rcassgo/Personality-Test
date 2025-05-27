@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import '../styles/ResultPage.css';
@@ -7,17 +7,15 @@ import '../styles/ResultPage.css';
 const ResultPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const scoresRaw = state?.scores || {};
+  const scores = state?.scores || {};
 
-  // useMemo: 의존성 배열에 scoresRaw만 넣음
-  const scores = useMemo(() => scoresRaw, [scoresRaw]);
-
+  // Firebase 저장 로직
   useEffect(() => {
     const saveResult = async () => {
       try {
         await addDoc(collection(db, "results"), {
-          scores,
-          createdAt: new Date(),
+          scores, // 카테고리별 점수 전체 저장
+          createdAt: new Date()
         });
       } catch (e) {
         console.error("Error adding document: ", e);
@@ -26,6 +24,7 @@ const ResultPage = () => {
     saveResult();
   }, [scores]);
 
+  // 최고 점수 카테고리 찾기
   const getResult = () => {
     let maxScore = -1;
     let resultCategory = "";
@@ -38,13 +37,16 @@ const ResultPage = () => {
     return resultCategory;
   };
 
-  const result = getResult();
-
   return (
     <div className="result-container">
       <h1>테스트 결과</h1>
       <div className="result-card">
-        <h2>당신은 {result}에 어울리는 사람입니다!</h2>
+        <h2>당신은 {getResult()}에 어울리는 사람입니다!</h2>
+        {/* <div className="score-display">
+          {Object.entries(scores).map(([category, score]) => (
+            <p key={category}>{category}: {score}점</p>
+          ))}
+        </div> */}
       </div>
       <button 
         className="retry-btn"
