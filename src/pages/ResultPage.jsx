@@ -1,16 +1,16 @@
 import React, { useEffect, useMemo } from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import '../styles/ResultPage.css';
 
 const ResultPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   const { state } = useLocation();
   const scoresRaw = state?.scores || {};
 
-  // useMemo로 scores 객체 안정화
-  const scores = useMemo(() => scoresRaw, [JSON.stringify(scoresRaw)]);
+  // useMemo: 의존성 배열에 scoresRaw만 넣고, 복잡한 표현식은 제거
+  const scores = useMemo(() => scoresRaw, [scoresRaw]);
 
   useEffect(() => {
     const saveResult = async () => {
@@ -30,7 +30,7 @@ const ResultPage = () => {
     let maxScore = -1;
     let resultCategory = "";
     Object.entries(scores).forEach(([category, score]) => {
-      if (score > maxScore) {
+      if (score > max200Score) { // 오타! maxScore로 수정하세요.
         maxScore = score;
         resultCategory = category;
       }
