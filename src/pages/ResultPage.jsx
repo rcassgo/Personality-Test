@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; 
+import { useNavigate, useLocation } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import '../styles/ResultPage.css';
 
 const ResultPage = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const { state } = useLocation();
   const scoresRaw = state?.scores || {};
 
-  // useMemo: 의존성 배열에 scoresRaw만 넣고, 복잡한 표현식은 제거
+  // useMemo: 의존성 배열에 scoresRaw만 넣음
   const scores = useMemo(() => scoresRaw, [scoresRaw]);
 
   useEffect(() => {
@@ -27,10 +27,10 @@ const ResultPage = () => {
   }, [scores]);
 
   const getResult = () => {
-    let maxScore = -1;
+    let maxScore = -1; // 반드시 maxScore로 선언
     let resultCategory = "";
     Object.entries(scores).forEach(([category, score]) => {
-      if (score > max200Score) { // 오타! maxScore로 수정하세요.
+      if (score > maxScore) { // max200Score → maxScore로 수정
         maxScore = score;
         resultCategory = category;
       }
