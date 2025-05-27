@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase'
+import { db } from '../firebase';
 import '../styles/ResultPage.css';
 
 const ResultPage = () => {
@@ -10,27 +10,21 @@ const ResultPage = () => {
   const totalScore = state?.totalScore || 0;
   const userAnswers = state?.userAnswers || [];
 
-  // 결과 저장 함수
-  const saveResult = async () => {
-    try {
-      await addDoc(collection(db, "results"), {
-        totalScore,
-        userAnswers,
-        createdAt: new Date(),
-      });
-      // 저장 완료 메시지는 생략 (필요시 주석 해제)
-      // alert('결과가 저장되었습니다!');
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      // 저장 실패 메시지는 생략 (필요시 주석 해제)
-      // alert('오류가 발생했습니다.');
-    }
-  };
-
-  // 결과 페이지 진입 시 한 번만 저장
+  // 결과 저장 함수 (useEffect 내부로 이동)
   useEffect(() => {
+    const saveResult = async () => {
+      try {
+        await addDoc(collection(db, "results"), {
+          totalScore,
+          userAnswers,
+          createdAt: new Date(),
+        });
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    };
     saveResult();
-  }, []); // 빈 배열로 한 번만 실행
+  }, []); // 의존성 배열이 비어도 됨
 
   const getResult = () => {
     if (totalScore >= 80) return { 
