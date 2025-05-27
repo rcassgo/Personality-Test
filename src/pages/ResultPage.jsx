@@ -25,11 +25,11 @@ const ResultPage = () => {
       <h1>테스트 결과</h1>
       <div className="result-card">
         <h2>당신은 {getResult()}에 어울리는 사람입니다!</h2>
-        <div className="score-display">
+        {/* <div className="score-display">
           {Object.entries(scores).map(([category, score]) => (
             <p key={category}>{category}: {score}점</p>
           ))}
-        </div>
+        </div> */}
       </div>
       <button 
         className="retry-btn"
