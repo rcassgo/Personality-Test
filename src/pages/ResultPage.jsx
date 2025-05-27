@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import questionsData from '../data/questions.json';
+import questionsData from '../data/questions.js';
 
 const ResultPage = () => {
   const navigate = useNavigate();

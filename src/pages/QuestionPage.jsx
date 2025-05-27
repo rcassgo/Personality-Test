@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import questionsData from '../data/questions.json';
-import { options } from '../data/options';
+import questionsData from '../data/questions.js';
+import { options } from '../data/questions.js';
 
 const QuestionPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
