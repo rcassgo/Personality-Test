@@ -25,7 +25,7 @@ const QuestionPage = () => {
         setCurrentIndex(prev => prev + 1);
         setSelectedAnswer(null);
       } else {
-        navigate('/admin', { 
+        navigate('/result', { 
           state: { 
             totalScore: totalScore + selectedAnswer,
             userAnswers: [...userAnswers, selectedAnswer]
