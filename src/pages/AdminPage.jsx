@@ -1,6 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
+import "../styles/AdminPage.css"; // 스타일 파일 import
 
 const AdminPage = () => {
   const [results, setResults] = useState([]);
@@ -17,18 +18,52 @@ const AdminPage = () => {
     fetchResults();
   }, []);
 
+  // 평균 점수 계산
+  const avgScore = results.length > 0
+    ? (results.reduce((sum, result) => sum + result.totalScore, 0) / results.length).toFixed(1)
+    : "데이터 없음";
+
+  // 날짜 포맷 함수
+  const formatDate = (timestamp) => {
+    if (!timestamp?.toDate) return "날짜 없음";
+    return timestamp.toDate().toLocaleString();
+  };
+
   return (
-    <div>
-      <h1>결과 목록</h1>
-      <ul>
-        {results.map(result => (
-          <li key={result.id}>
-            <p>총점: {result.totalScore}</p>
-            <p>답변: {result.userAnswers.join(', ')}</p>
-            <p>날짜: {result.createdAt?.toDate().toLocaleString()}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="admin-container">
+      <h1>관리자 페이지</h1>
+      <div className="stat-container">
+        <div className="stat-card">
+          <h3>전체 응답 수</h3>
+          <p className="stat-value">{results.length}</p>
+        </div>
+        <div className="stat-card">
+          <h3>평균 점수</h3>
+          <p className="stat-value">{avgScore}</p>
+        </div>
+      </div>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>총점</th>
+              <th>답변</th>
+              <th>날짜</th>
+            </tr>
+          </thead>
+          <tbody>
+            {results.map((result, idx) => (
+              <tr key={result.id}>
+                <td>{idx + 1}</td>
+                <td>{result.totalScore}</td>
+                <td>{result.userAnswers.join(', ')}</td>
+                <td>{formatDate(result.createdAt)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
