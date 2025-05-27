@@ -1,12 +1,12 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {questionsData} from '../data/questions.js';
+import { questionsData } from '../data/questions';
+import '../styles/ResultPage.css';
 
 const ResultPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const userAnswers = state?.userAnswers || [];
-
 
   const categoryScores = {
     "지역사회": 0,
@@ -15,16 +15,14 @@ const ResultPage = () => {
     "재활병원": 0
   };
 
-
   questionsData.forEach((group, groupIndex) => {
-    for (let qIndex = 0; qIndex < group.questions.length; qIndex++) {
+    group.questions.forEach((_, qIndex) => {
       const answer = userAnswers[groupIndex * 5 + qIndex];
       if (answer !== null && answer !== undefined) {
         categoryScores[group.category] += answer;
       }
-    }
+    });
   });
-
 
   let maxScore = -1;
   let resultCategory = "";
