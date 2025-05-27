@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
 import "../styles/AdminPage.css";
@@ -8,30 +8,28 @@ const AdminPage = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
-      const querySnapshot = await getDocs(collection(db, "results"));
+      // 쿼리에 정렬 조건 추가 (createdAt 기준 내림차순)
+      const q = query(collection(db, "results"), orderBy("createdAt", "desc"));
+      const querySnapshot = await getDocs(q);
+      
       const data = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
-        createdAt: doc.data().createdAt?.toDate() // 날짜 변환
+        createdAt: doc.data().createdAt?.toDate()
       }));
       setResults(data);
     };
     fetchResults();
   }, []);
 
-  // 카테고리별 점수 표시
   const categories = ["재활병원", "지역사회", "공공기관", "아동센터"];
 
-  // 전체 응답 수
   const totalResponses = results.length;
 
-  // 평균 점수 계산 (각 응답의 모든 카테고리 점수 합계의 평균)
   const avgScore = results.length > 0
     ? (
         results.reduce((total, result) => {
-          // result.scores가 없으면 빈 객체로 대체
           const scores = result.scores || {};
-          // 모든 카테고리 점수 합계
           const sum = categories.reduce((sum, category) => sum + (scores[category] || 0), 0);
           return total + sum;
         }, 0) / results.length
@@ -65,11 +63,10 @@ const AdminPage = () => {
           <tbody>
             {results.map((result, idx) => (
               <tr key={result.id}>
-                <td>{idx + 1}</td>
+                {/* 전체 응답 수 - 현재 인덱스로 역순 번호 매기기 */}
+                <td>{totalResponses - idx}</td>
                 {categories.map(category => (
-                  <td key={category}>
-                    {(result.scores || {})[category] || 0}
-                  </td>
+                  <td key={category}>{(result.scores || {})[category] || 0}</td>
                 ))}
                 <td>{result.createdAt?.toLocaleString() || "날짜 없음"}</td>
               </tr>
