@@ -1,202 +1,209 @@
 export const questions = [
+  // 지역사회
   {
-    text: "새로운 사람들과의 교류에서 나는",
+    text: "나는 현장을 직접 방문하여 대상자를 만나 문제를 해결하는 것이 효과적이라고 생각한다.",
     options: [
-      { text: "적극적으로 먼저 다가간다", score: 5 },
-      { text: "대화에 참여하지만 주도하지는 않는다", score: 4 },
-      { text: "상대방이 먼저 말걸기를 기다린다", score: 3 },
-      { text: "필요한 경우에만 말한다", score: 2 },
-      { text: "가능한 한 피하려고 한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "계획을 세울 때 나는",
+    text: "나는 예방적 접근이나 건강증진 프로그램에 관심이 많다.",
     options: [
-      { text: "매우 상세하게 계획한다", score: 5 },
-      { text: "대략적인 계획을 세운다", score: 4 },
-      { text: "필요한 부분만 계획한다", score: 3 },
-      { text: "즉흥적으로 행동하는 편이다", score: 2 },
-      { text: "계획 없이 행동한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "문제가 생겼을 때 나는",
+    text: "나는 질병 치료보다 건강 증진과 삶의 질 향상에 더 관심이 있다.",
     options: [
-      { text: "문제를 즉시 해결하려고 한다", score: 5 },
-      { text: "원인을 분석하고 해결한다", score: 4 },
-      { text: "도움을 요청한다", score: 3 },
-      { text: "시간이 지나면 해결되리라 믿는다", score: 2 },
-      { text: "피하려고 한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "스트레스를 받을 때 나는",
+    text: "나는 치료 시 대상자의 주변 환경을 함께 고려하는 것이 중요하다고 생각한다.",
     options: [
-      { text: "활동적으로 스트레스를 해소한다", score: 5 },
-      { text: "혼자만의 시간을 갖는다", score: 4 },
-      { text: "친구나 가족과 상담한다", score: 3 },
-      { text: "그냥 참고 지낸다", score: 2 },
-      { text: "감정적으로 터뜨린다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "새로운 환경에 적응할 때 나는",
+    text: "나는 지역 주민들과 소통하며 일하는 것을 즐긴다.",
     options: [
-      { text: "빠르게 적응한다", score: 5 },
-      { text: "관찰하며 천천히 적응한다", score: 4 },
-      { text: "익숙해지는데 시간이 걸린다", score: 3 },
-      { text: "적응이 힘들다", score: 2 },
-      { text: "적응을 포기한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
+    ]
+  },
+
+  // 공공기관
+  {
+    text: "나는 새로운 것보다는 정해진 틀 안에서 활동하는 것을 더 선호한다.",
+    options: [
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "의견이 다를 때 나는",
+    text: "나는 공무원이나 공공기관 종사자의 안정적인 직업 환경을 선호한다.",
     options: [
-      { text: "적극적으로 내 의견을 말한다", score: 5 },
-      { text: "조심스럽게 의견을 말한다", score: 4 },
-      { text: "상대방 의견을 듣고 맞춘다", score: 3 },
-      { text: "의견을 말하지 않는다", score: 2 },
-      { text: "의견을 꺼내지 않으려 한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "휴식을 취할 때 나는",
+    text: "나는 자료 정리, 문서 작성, 프로그램 기획 등 사무적인 일을 잘할 수 있다.",
     options: [
-      { text: "여러 사람과 함께 시간을 보낸다", score: 5 },
-      { text: "소수의 친한 사람과 시간을 보낸다", score: 4 },
-      { text: "혼자만의 시간을 즐긴다", score: 3 },
-      { text: "별다른 계획 없이 보낸다", score: 2 },
-      { text: "휴식이 필요하지 않다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "결정을 내릴 때 나는",
+    text: "나는 보건소, 교육청, 행정기관 등 공공기관에서의 작업치료 업무에 관심이 있다.",
     options: [
-      { text: "빠르게 결정한다", score: 5 },
-      { text: "고민 끝에 결정한다", score: 4 },
-      { text: "다른 사람 의견을 듣고 결정한다", score: 3 },
-      { text: "결정을 미룬다", score: 2 },
-      { text: "결정을 피하려 한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "새로운 취미를 시작할 때 나는",
+    text: "나는 건강 및 복지 정책을 설계하거나 평가하는 업무에 흥미가 있다.",
     options: [
-      { text: "적극적으로 도전한다", score: 5 },
-      { text: "조심스럽게 시도한다", score: 4 },
-      { text: "주변 추천을 받고 시작한다", score: 3 },
-      { text: "별로 관심이 없다", score: 2 },
-      { text: "시작하지 않는다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
+    ]
+  },
+
+  // 아동센터
+  {
+    text: "나는 아이들과 함께 있는 시간을 즐겁고 편안하게 느낀다.",
+    options: [
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "목표를 세울 때 나는",
+    text: "나는 감정을 잘 표현하고 타인의 행동을 이해하려 노력하는 편이다.",
     options: [
-      { text: "구체적이고 큰 목표를 세운다", score: 5 },
-      { text: "작은 목표부터 세운다", score: 4 },
-      { text: "목표를 세우지 않는 편이다", score: 3 },
-      { text: "필요할 때만 목표를 세운다", score: 2 },
-      { text: "목표를 피한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "피드백을 받을 때 나는",
+    text: "나는 다른 사람의 작은 변화나 반응에도 민감하게 반응하는 편이다.",
     options: [
-      { text: "적극적으로 반영한다", score: 5 },
-      { text: "생각해본 뒤 반영한다", score: 4 },
-      { text: "필요하다고 생각하면 반영한다", score: 3 },
-      { text: "별로 신경 쓰지 않는다", score: 2 },
-      { text: "피드백을 받기 싫어한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "일상에서 변화가 생길 때 나는",
+    text: "나는 학부모 상담 같은 간접 개입에도 유연하게 대응할 수 있다.",
     options: [
-      { text: "변화를 즐긴다", score: 5 },
-      { text: "적응하려고 노력한다", score: 4 },
-      { text: "익숙해지는데 시간이 걸린다", score: 3 },
-      { text: "변화를 힘들어한다", score: 2 },
-      { text: "변화를 피하려 한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "공동 작업을 할 때 나는",
+    text: "나는 어린이를 대상으로 한 수업이나 예시를 접하면 집중하게 된다.",
     options: [
-      { text: "리더 역할을 맡는다", score: 5 },
-      { text: "적극적으로 참여한다", score: 4 },
-      { text: "지시에 따라 움직인다", score: 3 },
-      { text: "최소한만 참여한다", score: 2 },
-      { text: "참여하지 않으려 한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
+    ]
+  },
+
+  // 재활병원
+  {
+    text: "나는 다양한 재활 분야 중 특정 분야에 관심이 뚜렷하다.",
+    options: [
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "실수를 했을 때 나는",
+    text: "나는 재활센터에서 다양한 직종 간의 협업이 중요하다고 생각한다.",
     options: [
-      { text: "즉시 인정하고 바로잡는다", score: 5 },
-      { text: "숙고한 뒤 해결책을 찾는다", score: 4 },
-      { text: "다른 사람의 도움을 받는다", score: 3 },
-      { text: "별로 신경 쓰지 않는다", score: 2 },
-      { text: "실수를 감추려 한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "새로운 정보를 접할 때 나는",
+    text: "나는 반복적인 일보다 다양한 케이스를 경험하고 문제 해결을 선호한다.",
     options: [
-      { text: "적극적으로 탐구한다", score: 5 },
-      { text: "궁금한 점만 찾아본다", score: 4 },
-      { text: "필요할 때만 찾아본다", score: 3 },
-      { text: "별로 관심이 없다", score: 2 },
-      { text: "정보를 피한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "감정 표현에 대해 나는",
+    text: "나는 해부학, 신경과학 등 기초과학 과목을 흥미롭게 공부했다.",
     options: [
-      { text: "솔직하게 표현한다", score: 5 },
-      { text: "상황에 맞게 표현한다", score: 4 },
-      { text: "감정을 드러내지 않으려 한다", score: 3 },
-      { text: "감정을 숨긴다", score: 2 },
-      { text: "감정을 억누른다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   },
   {
-    text: "일의 우선순위를 정할 때 나는",
+    text: "나는 손기능 훈련, 보조기기, 일상생활동작(ADL)에 관심이 많다.",
     options: [
-      { text: "명확하게 우선순위를 세운다", score: 5 },
-      { text: "대략적으로 우선순위를 정한다", score: 4 },
-      { text: "상황에 따라 정한다", score: 3 },
-      { text: "우선순위를 정하지 않는다", score: 2 },
-      { text: "우선순위를 정하기 싫어한다", score: 1 }
-    ]
-  },
-  {
-    text: "여가 시간에 나는",
-    options: [
-      { text: "여러 활동을 적극적으로 즐긴다", score: 5 },
-      { text: "소수의 취미를 즐긴다", score: 4 },
-      { text: "쉬는 시간을 즐긴다", score: 3 },
-      { text: "특별히 계획을 세우지 않는다", score: 2 },
-      { text: "여가 시간을 갖지 않는다", score: 1 }
-    ]
-  },
-  {
-    text: "타인의 감정에 대해 나는",
-    options: [
-      { text: "공감 능력이 뛰어나다", score: 5 },
-      { text: "상황에 따라 공감한다", score: 4 },
-      { text: "공감하려고 노력한다", score: 3 },
-      { text: "공감이 잘 되지 않는다", score: 2 },
-      { text: "공감에 관심이 없다", score: 1 }
-    ]
-  },
-  {
-    text: "미래를 생각할 때 나는",
-    options: [
-      { text: "구체적으로 계획한다", score: 5 },
-      { text: "대략적으로 생각한다", score: 4 },
-      { text: "필요할 때만 생각한다", score: 3 },
-      { text: "별로 생각하지 않는다", score: 2 },
-      { text: "미래를 두려워한다", score: 1 }
+      { text: "매우 그렇지 않다", score: 1 },
+      { text: "그렇지 않다", score: 2 },
+      { text: "보통이다", score: 3 },
+      { text: "그렇다", score: 4 },
+      { text: "매우 그렇다", score: 5 }
     ]
   }
 ];
