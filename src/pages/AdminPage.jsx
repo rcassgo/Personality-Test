@@ -38,14 +38,14 @@ const AdminPage = () => {
           </thead>
           <tbody>
             {results.map((result, idx) => (
-              <tr key={result.id}>
-                <td>{idx + 1}</td>
-                {categories.map(category => (
-                  <td key={category}>{result.scores[category] || 0}</td>
+                <tr key={result.id}>
+                    <td>{idx + 1}</td>
+                    {categories.map(category => (
+                    <td key={category}>{(result.scores || {})[category] || 0}</td>
+                    ))}
+                    <td>{result.createdAt?.toLocaleString() || "날짜 없음"}</td>
+                </tr>
                 ))}
-                <td>{result.createdAt?.toLocaleString() || "날짜 없음"}</td>
-              </tr>
-            ))}
           </tbody>
         </table>
       </div>
