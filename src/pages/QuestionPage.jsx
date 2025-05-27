@@ -49,7 +49,6 @@ const QuestionPage = () => {
     <div className="question-container">
       <ProgressBar current={totalProgress + 1} total={20} />
       
-      <h2>{categories[currentCategory].name}</h2>
       <h3>{currentQuestion + 1}. {categories[currentCategory].questions[currentQuestion]}</h3>
       
       <div className="options-grid">
