@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { categories, options } from '../data/questions';
+import { categories, options } from '../data/questions.js';
 import ProgressBar from '../components/ProgressBar';
 import '../styles/QuestionPage.css';
 
