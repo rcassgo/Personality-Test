@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import '../styles/ResultPage.css';
 
 const ResultPage = () => {
@@ -7,6 +9,21 @@ const ResultPage = () => {
   const { state } = useLocation();
   const scores = state?.scores || {};
 
+  // Firebase에 결과 저장
+  useEffect(() => {
+    const saveResult = async () => {
+      try {
+        await addDoc(collection(db, "results"), {
+          scores, // 카테고리별 점수 전체 저장
+          createdAt: new Date()
+        });
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    };
+    saveResult();
+  }, [scores]);
+  
   // 최고 점수 카테고리 찾기
   const getResult = () => {
     let maxScore = -1;
