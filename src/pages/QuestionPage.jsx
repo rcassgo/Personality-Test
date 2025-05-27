@@ -21,26 +21,31 @@ const QuestionPage = () => {
   };
 
   const handleNext = () => {
-    if (selectedAnswer !== null) {
-      // 현재 카테고리 점수 업데이트
-      const currentCat = categories[currentCategory].name;
-      setScores(prev => ({
-        ...prev,
-        [currentCat]: prev[currentCat] + selectedAnswer
-      }));
+  if (selectedAnswer !== null) {
+    const currentCat = categories[currentCategory].name;
+    
+    // 즉시 업데이트된 점수 계산
+    const updatedScores = {
+      ...scores,
+      [currentCat]: scores[currentCat] + selectedAnswer
+    };
 
-      // 다음 질문 또는 결과 페이지로 이동
-      if (currentQuestion < 4) {
-        setCurrentQuestion(prev => prev + 1);
-      } else if (currentCategory < 3) {
-        setCurrentCategory(prev => prev + 1);
-        setCurrentQuestion(0);
-      } else {
-        navigate('/result', { state: { scores } });
-      }
-      setSelectedAnswer(null);
+    // 다음 질문 또는 결과 페이지 이동
+    if (currentQuestion < 4) {
+      setCurrentQuestion(prev => prev + 1);
+    } else if (currentCategory < 3) {
+      setCurrentCategory(prev => prev + 1);
+      setCurrentQuestion(0);
+    } else {
+      navigate('/result', { state: { scores: updatedScores } });
     }
-  };
+
+    // 상태 동기화
+    setScores(updatedScores);
+    setSelectedAnswer(null);
+  }
+};
+
 
   // 전체 진행률 계산 (0~19)
   const totalProgress = currentCategory * 5 + currentQuestion;
@@ -49,7 +54,9 @@ const QuestionPage = () => {
     <div className="question-container">
       <ProgressBar current={totalProgress + 1} total={20} />
       
-      <h3>{currentQuestion + 1}. {categories[currentCategory].questions[currentQuestion]}</h3>
+      {/* <h2>{categories[currentCategory].name}</h2> */}
+      {/* <h3>{currentQuestion + 1}. {categories[currentCategory].questions[currentQuestion]}</h3> */}
+      <h3>{categories[currentCategory].questions[currentQuestion]}</h3>
       
       <div className="options-grid">
         {options.map((option, index) => (
