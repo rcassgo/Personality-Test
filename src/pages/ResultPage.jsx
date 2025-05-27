@@ -27,10 +27,10 @@ const ResultPage = () => {
   }, [scores]);
 
   const getResult = () => {
-    let maxScore = -1; // 반드시 maxScore로 선언
+    let maxScore = -1;
     let resultCategory = "";
     Object.entries(scores).forEach(([category, score]) => {
-      if (score > maxScore) { // max200Score → maxScore로 수정
+      if (score > maxScore) {
         maxScore = score;
         resultCategory = category;
       }
