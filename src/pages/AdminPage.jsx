@@ -8,8 +8,8 @@ const AdminPage = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
-      // 쿼리에 정렬 조건 추가 (createdAt 기준 내림차순)
-      const q = query(collection(db, "results"), orderBy("createdAt", "desc"));
+      // 1. createdAt 기준 오름차순 정렬 (오래된 순 → 최신 순)
+      const q = query(collection(db, "results"), orderBy("createdAt", "asc"));
       const querySnapshot = await getDocs(q);
       
       const data = querySnapshot.docs.map(doc => ({
@@ -63,8 +63,7 @@ const AdminPage = () => {
           <tbody>
             {results.map((result, idx) => (
               <tr key={result.id}>
-                {/* 전체 응답 수 - 현재 인덱스로 역순 번호 매기기 */}
-                <td>{totalResponses - idx}</td>
+                <td>{idx + 1}</td>
                 {categories.map(category => (
                   <td key={category}>{(result.scores || {})[category] || 0}</td>
                 ))}
