@@ -8,7 +8,6 @@ const AdminPage = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
-      // 1. createdAt 기준 오름차순 정렬 (오래된 순 → 최신 순)
       const q = query(collection(db, "results"), orderBy("createdAt", "asc"));
       const querySnapshot = await getDocs(q);
       
@@ -24,29 +23,29 @@ const AdminPage = () => {
 
   const categories = ["재활병원", "지역사회", "공공기관", "아동센터"];
 
-  const totalResponses = results.length;
-
-  const avgScore = results.length > 0
-    ? (
-        results.reduce((total, result) => {
-          const scores = result.scores || {};
-          const sum = categories.reduce((sum, category) => sum + (scores[category] || 0), 0);
-          return total + sum;
-        }, 0) / results.length
-      ).toFixed(1)
-    : 0;
+  // 카테고리별 평균 계산
+  const categoryAverages = categories.reduce((acc, category) => {
+    const total = results.reduce((sum, result) => {
+      return sum + ((result.scores || {})[category] || 0);
+    }, 0);
+    acc[category] = results.length > 0 ? (total / results.length).toFixed(1) : 0;
+    return acc;
+  }, {});
 
   return (
     <div className="admin-container">
       <h1>관리자 페이지</h1>
       <div className="stat-container">
+        {/* 카테고리별 평균 점수 카드 */}
+        {categories.map(category => (
+          <div className="stat-card" key={category}>
+            <h3>{category} 평균</h3>
+            <p className="stat-value">{categoryAverages[category]}</p>
+          </div>
+        ))}
         <div className="stat-card">
           <h3>전체 응답 수</h3>
-          <p className="stat-value">{totalResponses}</p>
-        </div>
-        <div className="stat-card">
-          <h3>평균 점수</h3>
-          <p className="stat-value">{avgScore}</p>
+          <p className="stat-value">{results.length}</p>
         </div>
       </div>
       <div className="table-container">
