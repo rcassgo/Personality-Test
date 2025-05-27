@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -7,7 +7,7 @@ import '../styles/ResultPage.css';
 const ResultPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const scores = state?.scores || {};
+  const scores = useMemo(() => state?.scores || {}, [state?.scores]);
 
   // Firebase에 결과 저장
   useEffect(() => {
@@ -23,7 +23,7 @@ const ResultPage = () => {
     };
     saveResult();
   }, [scores]);
-  
+
   // 최고 점수 카테고리 찾기
   const getResult = () => {
     let maxScore = -1;
