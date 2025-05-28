@@ -23,7 +23,7 @@ const AdminPage = () => {
   }, []);
 
   // 평균
-  const categories = ["재활병원", "지역사회", "공공기관", "아동센터"];
+  const categories = ["창업", "공공기관", "아동센터", "재활병원"];
   const categoryAverages = categories.reduce((acc, category) => {
     const total = results.reduce((sum, result) => sum + ((result.scores || {})[category] || 0), 0);
     acc[category] = results.length > 0 ? (total / results.length).toFixed(1) : 0;

@@ -8,10 +8,10 @@ const QuestionPage = () => {
   const [currentCategory, setCurrentCategory] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState({ 
-    "재활병원": 0, 
-    "지역사회": 0, 
+    "창업": 0, 
     "공공기관": 0, 
-    "아동센터": 0 
+    "아동센터": 0, 
+    "재활병원": 0 
   });
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const navigate = useNavigate();
