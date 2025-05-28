@@ -9,12 +9,12 @@ const ResultPage = () => {
   const { state } = useLocation();
   const scores = useMemo(() => state?.scores || {}, [state?.scores]);
 
-  // Firebase에 결과 저장
+  // Firebase
   useEffect(() => {
     const saveResult = async () => {
       try {
         await addDoc(collection(db, "results"), {
-          scores, // 카테고리별 점수 전체 저장
+          scores,
           createdAt: new Date()
         });
       } catch (e) {
@@ -24,7 +24,7 @@ const ResultPage = () => {
     saveResult();
   }, [scores]);
 
-  // 최고 점수 카테고리 찾기
+
   const getResult = () => {
     let maxScore = -1;
     let resultCategory = "";

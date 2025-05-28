@@ -24,13 +24,11 @@ const QuestionPage = () => {
   if (selectedAnswer !== null) {
     const currentCat = categories[currentCategory].name;
     
-    // 즉시 업데이트된 점수 계산
     const updatedScores = {
       ...scores,
       [currentCat]: scores[currentCat] + selectedAnswer
     };
 
-    // 다음 질문 또는 결과 페이지 이동
     if (currentQuestion < 4) {
       setCurrentQuestion(prev => prev + 1);
     } else if (currentCategory < 3) {
@@ -40,14 +38,13 @@ const QuestionPage = () => {
       navigate('/result', { state: { scores: updatedScores } });
     }
 
-    // 상태 동기화
     setScores(updatedScores);
     setSelectedAnswer(null);
   }
 };
 
 
-  // 전체 진행률 계산 (0~19)
+// 진행률
   const totalProgress = currentCategory * 5 + currentQuestion;
 
   return (

@@ -22,7 +22,7 @@ const AdminPage = () => {
     fetchResults();
   }, []);
 
-  // 카테고리별 평균 계산
+  // 평균
   const categories = ["재활병원", "지역사회", "공공기관", "아동센터"];
   const categoryAverages = categories.reduce((acc, category) => {
     const total = results.reduce((sum, result) => sum + ((result.scores || {})[category] || 0), 0);
@@ -30,7 +30,7 @@ const AdminPage = () => {
     return acc;
   }, {});
 
-  // 개별 삭제
+  // 삭제
   const handleDelete = async (id) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
     setLoading(true);
@@ -43,7 +43,7 @@ const AdminPage = () => {
     setLoading(false);
   };
 
-  // 전체 삭제
+  // 전체삭제
   const handleDeleteAll = async () => {
     if (!window.confirm("전체 데이터를 삭제하시겠습니까?")) return;
     setLoading(true);
@@ -61,7 +61,6 @@ const AdminPage = () => {
     <div className="admin-container">
       <h1>관리자 페이지</h1>
       
-      {/* 카테고리별 평균 & 전체 응답 수 */}
       <div className="stat-container">
         {categories.map(category => (
           <div className="stat-card" key={category}>
