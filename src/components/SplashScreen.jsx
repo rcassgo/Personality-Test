@@ -1,4 +1,4 @@
-// src/routes/SplashScreen.jsx
+// src/components/SplashScreen.jsx
 import { useNavigate } from 'react-router-dom';
 import '../styles/SplashScreen.css';
 
@@ -9,12 +9,13 @@ const SplashScreen = () => {
     <div className="splash-container">
       <img 
         src="/splash-image.png" 
-        alt="앱 로고" 
+        alt="테스트 시작 화면" 
         className="splash-image"
       />
-      <button 
-        className="enter-btn"
-        onClick={() => navigate('/home')}
+      <button
+        className="enter-button"
+        onClick={() => navigate('/question')}
+        aria-label="테스트 시작 버튼"
       >
         테스트 시작하기
       </button>
