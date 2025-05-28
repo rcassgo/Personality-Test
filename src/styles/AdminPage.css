@@ -82,22 +82,35 @@ tr:hover {
   }
 }
 
-.clear-btn, .delete-btn {
+.clear-btn {
   background: #f44336;
-  color: #fff;
+  color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 6px;
-  padding: 6px 14px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.95rem;
-  margin: 0 4px;
-  transition: background 0.2s;
+  font-size: 1rem;
 }
+
+.delete-btn {
+  background: #ff6666;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .clear-btn:disabled, .delete-btn:disabled {
-  background: #ccc;
+  background: #cccccc;
   cursor: not-allowed;
 }
-.clear-btn:hover:not(:disabled), .delete-btn:hover:not(:disabled) {
+
+.clear-btn:hover:not(:disabled) {
   background: #d32f2f;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: #ff4444;
 }
 

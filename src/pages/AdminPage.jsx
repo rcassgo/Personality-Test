@@ -22,26 +22,34 @@ const AdminPage = () => {
     fetchResults();
   }, []);
 
+  // 카테고리별 평균 계산
+  const categories = ["재활병원", "지역사회", "공공기관", "아동센터"];
+  const categoryAverages = categories.reduce((acc, category) => {
+    const total = results.reduce((sum, result) => sum + ((result.scores || {})[category] || 0), 0);
+    acc[category] = results.length > 0 ? (total / results.length).toFixed(1) : 0;
+    return acc;
+  }, {});
+
+  // 개별 삭제
   const handleDelete = async (id) => {
-    if (!window.confirm("정말로 이 응답을 삭제하시겠습니까?")) return;
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
     setLoading(true);
     try {
       await deleteDoc(doc(db, "results", id));
-      await fetchResults(); // 삭제 후 목록 갱신
+      await fetchResults();
     } catch (e) {
       alert("삭제 실패: " + e.message);
     }
     setLoading(false);
   };
 
+  // 전체 삭제
   const handleDeleteAll = async () => {
-    if (!window.confirm("정말로 전체 데이터를 삭제하시겠습니까?")) return;
+    if (!window.confirm("전체 데이터를 삭제하시겠습니까?")) return;
     setLoading(true);
     try {
-      // 모든 문서 순회하며 삭제 (작은 데이터셋에만 권장)
-      for (const result of results) {
-        await deleteDoc(doc(db, "results", result.id));
-      }
+      const batch = results.map(result => deleteDoc(doc(db, "results", result.id)));
+      await Promise.all(batch);
       await fetchResults();
     } catch (e) {
       alert("전체 삭제 실패: " + e.message);
@@ -49,18 +57,36 @@ const AdminPage = () => {
     setLoading(false);
   };
 
-  const categories = ["재활병원", "지역사회", "공공기관", "아동센터"];
-
-  // ... (카테고리별 평균 계산 등 기존 코드 동일)
-
   return (
     <div className="admin-container">
       <h1>관리자 페이지</h1>
-      <div style={{ marginBottom: 16 }}>
-        <button className="clear-btn" onClick={handleDeleteAll} disabled={loading}>
+      
+      {/* 카테고리별 평균 & 전체 응답 수 */}
+      <div className="stat-container">
+        {categories.map(category => (
+          <div className="stat-card" key={category}>
+            <h3>{category} 평균</h3>
+            <p className="stat-value">{categoryAverages[category]}</p>
+          </div>
+        ))}
+        <div className="stat-card">
+          <h3>전체 응답 수</h3>
+          <p className="stat-value">{results.length}</p>
+        </div>
+      </div>
+
+      {/* 전체 삭제 버튼 */}
+      <div style={{ margin: "20px 0" }}>
+        <button 
+          className="clear-btn"
+          onClick={handleDeleteAll}
+          disabled={loading}
+        >
           전체 초기화
         </button>
       </div>
+
+      {/* 결과 테이블 */}
       <div className="table-container">
         <table>
           <thead>
@@ -70,7 +96,7 @@ const AdminPage = () => {
                 <th key={category}>{category}</th>
               ))}
               <th>날짜</th>
-              <th>삭제</th>
+              <th>관리</th>
             </tr>
           </thead>
           <tbody>
