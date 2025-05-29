@@ -54,7 +54,7 @@ const ResultPage = () => {
         <img
           src={imageSrc}
           alt={resultCategory}
-          style={{ width: '450px', marginTop: '5px' }}
+          style={{ width: '480px', marginTop: '5px' }}
         />
       </div>
       <button className="retry-btn" onClick={() => navigate('/')}>
