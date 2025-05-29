@@ -21,19 +21,19 @@ const QuestionPage = () => {
   };
 
   const handleNext = () => {
-  if (selectedAnswer !== null) {
-    const currentCat = categories[currentCategory].name;
+  if (selectedAnswer !== null) {                         // 답이 선택 되면
+    const currentCat = categories[currentCategory].name; // categories[x].name 을 불러온다
     
     const updatedScores = {
-      ...scores,
-      [currentCat]: scores[currentCat] + selectedAnswer
+      ...scores,                                        // 기존 스코어에
+      [currentCat]: scores[currentCat] + selectedAnswer // "창업" 값을 scores["창업"]값에 새로운 값을 더한다
     };
 
-    if (currentQuestion < 4) {
-      setCurrentQuestion(prev => prev + 1);
-    } else if (currentCategory < 3) {
-      setCurrentCategory(prev => prev + 1);
-      setCurrentQuestion(0);
+    if (currentQuestion < 4) {                          // 현재 질문 수가 < 4 이면
+      setCurrentQuestion(prev => prev + 1);             // +1
+    } else if (currentCategory < 3) {                   // 현재 질문수 < 4 이고, 카테고리 번호 < 3 이면
+      setCurrentCategory(prev => prev + 1);             // 카테고리 번호 + 1 // 창업 -> 공공기관으로
+      setCurrentQuestion(0);                            // 남은 질문 0으로
     } else {
       navigate('/result', { state: { scores: updatedScores } });
     }

@@ -13,21 +13,27 @@ const ResultPage = () => {
   useEffect(() => {
     const saveResult = async () => {
       try {
-        await addDoc(collection(db, "results"), {
+        await addDoc(collection(db, 'results'), {
           scores,
-          createdAt: new Date()
+          createdAt: new Date(),
         });
       } catch (e) {
-        console.error("Error adding document: ", e);
+        console.error('Error adding document: ', e);
       }
     };
     saveResult();
   }, [scores]);
 
+  const categoryImages = {
+    창업: '0.jpeg',
+    공공기관: '1.jpeg',
+    아동센터: '2.jpeg',
+    재활병원: '3.jpeg',
+  };
 
   const getResult = () => {
     let maxScore = -1;
-    let resultCategory = "";
+    let resultCategory = '';
     Object.entries(scores).forEach(([category, score]) => {
       if (score > maxScore) {
         maxScore = score;
@@ -37,21 +43,21 @@ const ResultPage = () => {
     return resultCategory;
   };
 
+  const resultCategory = getResult();
+  const imageSrc =
+    process.env.PUBLIC_URL + '/' + categoryImages[resultCategory];
+
   return (
     <div className="result-container">
       <h1>테스트 결과</h1>
       <div className="result-card">
-        <h2>당신은 {getResult()}에 어울리는 사람입니다!</h2>
-        {/* <div className="score-display">
-          {Object.entries(scores).map(([category, score]) => (
-            <p key={category}>{category}: {score}점</p>
-          ))}
-        </div> */}
+        <img
+          src={imageSrc}
+          alt={resultCategory}
+          style={{ width: '300px', marginTop: '20px' }}
+        />
       </div>
-      <button 
-        className="retry-btn"
-        onClick={() => navigate('/')}
-      >
+      <button className="retry-btn" onClick={() => navigate('/')}>
         다시 테스트하기
       </button>
     </div>
